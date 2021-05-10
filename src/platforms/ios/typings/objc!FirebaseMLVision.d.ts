@@ -87,6 +87,8 @@ declare class FIRVision extends NSObject {
 
 	objectDetectorWithOptions(options: FIRVisionObjectDetectorOptions): FIRVisionObjectDetector;
 
+	onDeviceAutoMLImageLabelerWithOptions(options: FIRVisionOnDeviceAutoMLImageLabelerOptions): FIRVisionImageLabeler;
+
 	onDeviceImageLabeler(): FIRVisionImageLabeler;
 
 	onDeviceImageLabelerWithOptions(options: FIRVisionOnDeviceImageLabelerOptions): FIRVisionImageLabeler;
@@ -121,6 +123,8 @@ declare class FIRVisionBarcode extends NSObject {
 	readonly geoPoint: FIRVisionBarcodeGeoPoint;
 
 	readonly phone: FIRVisionBarcodePhone;
+
+	readonly rawData: NSData;
 
 	readonly rawValue: string;
 

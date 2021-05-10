@@ -1,5 +1,5 @@
-/// <reference path="./node_modules/tns-platform-declarations/ios.d.ts" />
-/// <reference path="./node_modules/tns-platform-declarations/android.d.ts" />
+/// <reference path="./node_modules/@nativescript/core/global-types.d.ts" />
+/// <reference path="./node_modules/@nativescript/types/index.d.ts" />
 
 /// <reference path="./platforms/ios/typings/objc!FBSDKCoreKit.d.ts" />
 /// <reference path="./platforms/ios/typings/objc!FBSDKLoginKit.d.ts" />
@@ -7,6 +7,7 @@
 /// <reference path="./platforms/ios/typings/objc!FirebaseAnalytics.d.ts" />
 /// <reference path="./platforms/ios/typings/objc!FirebaseAuth.d.ts" />
 /// <reference path="./platforms/ios/typings/objc!FirebaseCore.d.ts" />
+/// <reference path="./platforms/ios/typings/objc!FirebaseCrashlytics.d.ts" />
 /// <reference path="./platforms/ios/typings/objc!FirebaseDatabase.d.ts" />
 /// <reference path="./platforms/ios/typings/objc!FirebaseDynamicLinks.d.ts" />
 /// <reference path="./platforms/ios/typings/objc!FirebaseFirestore.d.ts" />
@@ -17,6 +18,7 @@
 /// <reference path="./platforms/ios/typings/objc!FirebaseMLCommon.d.ts" />
 /// <reference path="./platforms/ios/typings/objc!FirebaseMLVision.d.ts" />
 /// <reference path="./platforms/ios/typings/objc!FirebaseMLVisionObjectDetection.d.ts" />
+/// <reference path="./platforms/ios/typings/objc!FirebaseMLVisionAutoML.d.ts" />
 /// <reference path="./platforms/ios/typings/objc!FirebaseMLModelInterpreter.d.ts" />
 /// <reference path="./platforms/ios/typings/objc!FirebasePerformance.d.ts" />
 /// <reference path="./platforms/ios/typings/objc!FirebaseRemoteConfig.d.ts" />
@@ -29,7 +31,6 @@
 /// <reference path="./platforms/ios/typings/objc!FirebaseMLNLTranslate.d.ts" />
 
 /// <reference path="./platforms/ios/typings/objc!TNSMLKitCamera.d.ts" />
-/// <reference path="./platforms/ios/typings/objc!TNSCrashlyticsLogger.d.ts" />
 
 /// <reference path="./platforms/android/typings/nativescript-android-lib/android.d.ts" />
 //
@@ -44,6 +45,7 @@
 /// <reference path="./platforms/android/typings/mlkit/ml-common.d.ts" />
 /// <reference path="./platforms/android/typings/mlkit/ml-vision.d.ts" />
 /// <reference path="./platforms/android/typings/mlkit/ml-vision-face-model.d.ts" />
+/// <reference path="./platforms/android/typings/mlkit/ml-vision-automl.d.ts" />
 /// <reference path="./platforms/android/typings/mlkit/ml-model-interpreter.d.ts" />
 /// <reference path="./platforms/android/typings/mlkit/ml-plugin-lib.d.ts" />
 /// <reference path="./platforms/android/typings/mlkit/ml-natural-language.d.ts" />
@@ -52,6 +54,7 @@
 /// <reference path="./platforms/android/typings/mlkit/ml-translate.d.ts" />
 /// <reference path="./platforms/android/typings/performance/android.d.ts" />
 /// <reference path="./platforms/android/typings/playservices/android.d.ts" />
+/// <reference path="./platforms/android/typings/playservices/gms/android.d.ts" />
 /// <reference path="./platforms/android/typings/remoteconfig/android.d.ts" />
 /// <reference path="./platforms/android/typings/inappmessaging/android.d.ts" />
 /// <reference path="./platforms/android/typings/crashlytics/fabric.d.ts" />

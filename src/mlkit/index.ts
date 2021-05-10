@@ -5,12 +5,12 @@ import * as imagelabeling from "./imagelabeling";
 import * as objectdetection from "./objectdetection";
 import * as landmarkrecognition from "./landmarkrecognition";
 import * as custommodel from "./custommodel";
+import * as automl from "./automl";
 import * as naturallanguageidentification from "./naturallanguageidentification";
 import * as translation from "./translation";
 import * as smartreply from "./smartreply";
 
-import { ImageSource } from "tns-core-modules/image-source";
-import { Image } from "tns-core-modules/ui/image";
+import { ImageSource, Image } from "@nativescript/core";
 
 export interface MLKitVisionOptions {
   image?: Image | ImageSource;
@@ -48,6 +48,7 @@ export {
   objectdetection,
   landmarkrecognition,
   custommodel,
+  automl,
   naturallanguageidentification,
   translation,
   smartreply

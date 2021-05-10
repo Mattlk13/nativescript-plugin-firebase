@@ -2,6 +2,8 @@
 
 Make sure to check out [this demo app](https://github.com/EddyVerbruggen/nativescript-plugin-firebase/tree/master/demo-ng) because it has almost all ML Kit features this plugin currently supports! Steps:
 
+> Supported on Android, and iOS 10+
+
 ```bash
 git clone https://github.com/EddyVerbruggen/nativescript-plugin-firebase
 cd nativescript-plugin-firebase/src
@@ -88,6 +90,7 @@ To be able to use Cloud features you need to do two things:
 |[Natural language identification](#natural-language-identification)|✅|
 |[Translate text](#translate-text)|✅|
 |[Smart reply](#smart-reply)|✅|
+|[AutoML Vision Edge](#automl-vision-edge)|✅|✅
 |[Custom model inference](#custom-model-inference)|✅|✅
 
 ### Text recognition
@@ -511,6 +514,46 @@ firebase.mlkit.smartreply.suggestReplies({
 .catch(errorMessage => console.log("ML Kit error: " + errorMessage));
 ```
 
+### AutoML Vision Edge
+<img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-plugin-firebase/master/docs/images/features/mlkit_automl.png" height="153px" alt="ML Kit - AutoML Vision Edge"/>
+
+[Firebase documentation 🌎](https://firebase.google.com/docs/ml-kit/automl-image-labeling)
+
+> NOTE: currently only local models are supported (not cloud models), but it's fairly easy to add those so open an issue if you need it. See the demo-ng folder for an example.
+
+#### Still image (on-device)
+
+```typescript
+import { MLKitAutoMLResult } from "nativescript-plugin-firebase/mlkit/automl";
+const firebase = require("nativescript-plugin-firebase");
+
+firebase.mlkit.automl.labelImage({
+  localModelResourceFolder: "leftright", 
+  image: imageSource,
+  confidenceThreshold: 0.6 // this will only return labels with at least 0.6 (60%) confidence. Default 0.5.
+})
+.then((result: MLKitAutoMLResult) => console.log(JSON.stringify(result.labels)))
+.catch(errorMessage => console.log("ML Kit error: " + errorMessage));
+```
+
+#### Live camera feed
+The basics are explained above for 'Text recognition', so we're only showing the differences here.
+
+```typescript
+import { registerElement } from "nativescript-angular/element-registry";
+registerElement("MLKitAutoML", () => require("nativescript-plugin-firebase/mlkit/automl").MLKitAutoML);
+```
+
+```html
+<MLKitAutoML
+    width="260"
+    height="380"
+    localModelResourceFolder="leftright"
+    confidenceThreshold="0.6"
+    (scanResult)="onAutoMLResult($event)">
+</MLKitImageLabeling>
+```
+
 ### Custom model inference
 <img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-plugin-firebase/master/docs/images/features/mlkit_custom_model_tflite.png" height="153px" alt="ML Kit - Custom Model (TensorFlow Lite)"/>
 
@@ -523,6 +566,7 @@ firebase.mlkit.smartreply.suggestReplies({
 - On Android, make sure the model is not compressed by adding [your model's file extension to app.gradle](https://github.com/EddyVerbruggen/nativescript-plugin-firebase/blob/57969d0a62d761bffb98b19db85af88bfae858dd/demo-ng/app/App_Resources/Android/app.gradle#L22).
 - Only "Quantized" models can be used. Not "Float" models, so `modelInput.type` below must be set to `QUANT`.
 - The `modelInput.shape` parameter below must specify your model's dimensions. If you're not sure, use the script in the paragraph "Specify the model's input and output" at [the Firebase docs](https://firebase.google.com/docs/ml-kit/ios/use-custom-models).
+- If you're using Webpack, make sure to have it copy the model and labels files to the bundled app as well. [Here's an example.](https://github.com/EddyVerbruggen/nativescript-plugin-firebase/blob/816a529be7f19bad1bbd572b77835ab8e557f32d/demo-ng/webpack.config.js#L275)
 
 #### Still image (on-device)
 

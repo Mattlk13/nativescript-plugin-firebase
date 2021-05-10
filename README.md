@@ -1,23 +1,30 @@
 # NativeScript Firebase plugin
 
-[![Build Status][build-status]][build-url]
+<img src="docs/images/firebase-logo.png" width="116px" height="32px" alt="Firebase"/><br/>
+
+> For NativeScript 7 compatibility, run `tns plugin add @nativescript/firebase`.
+
 [![NPM version][npm-image]][npm-url]
 [![Downloads][downloads-image]][npm-url]
 [![TotalDownloads][total-downloads-image]][npm-url]
-[![Twitter Follow][twitter-image]][twitter-url]
 
-[build-status]:https://travis-ci.org/EddyVerbruggen/nativescript-plugin-firebase.svg?branch=master
-[build-url]:https://travis-ci.org/EddyVerbruggen/nativescript-plugin-firebase
-[npm-image]:http://img.shields.io/npm/v/nativescript-plugin-firebase.svg
-[npm-url]:https://npmjs.org/package/nativescript-plugin-firebase
-[downloads-image]:http://img.shields.io/npm/dm/nativescript-plugin-firebase.svg
-[total-downloads-image]:http://img.shields.io/npm/dt/nativescript-plugin-firebase.svg?label=total%20downloads
-[twitter-image]:https://img.shields.io/twitter/follow/eddyverbruggen.svg?style=social&label=Follow%20me
-[twitter-url]:https://twitter.com/eddyverbruggen
+[npm-image]:https://img.shields.io/npm/v/@nativescript/firebase.svg
+[npm-url]:https://npmjs.org/package/@nativescript/firebase
+[downloads-image]:https://img.shields.io/npm/dm/@nativescript/firebase.svg
+[total-downloads-image]:https://img.shields.io/npm/dt/@nativescript/firebase.svg?label=total%20downloads
 
-<img src="docs/images/firebase-logo.png" width="116px" height="32px" alt="Firebase"/><br/>
+> For NativeScript 6.1+ compatibility, install polugin version 10: `tns plugin add nativescript-plugin-firebase@10`.
 
-> Plugin version **10.0.0** works with NativeScript 5.2+, and 6.1+ is recommended. Using an older version? Stick to plugin version < 10.
+> For NativeScript 6.0 and lower, stick to plugin version < 10.
+
+[![NPM version][npm-image-legacy]][npm-url-legacy]
+[![Downloads][downloads-image-legacy]][npm-url-legacy]
+[![TotalDownloads][total-downloads-image-legacy]][npm-url-legacy]
+
+[npm-image-legacy]:https://img.shields.io/npm/v/nativescript-plugin-firebase.svg
+[npm-url-legacy]:https://npmjs.org/package/nativescript-plugin-firebase
+[downloads-image-legacy]:https://img.shields.io/npm/dm/nativescript-plugin-firebase.svg
+[total-downloads-image-legacy]:https://img.shields.io/npm/dt/nativescript-plugin-firebase.svg?label=total%20downloads
 
 ## Features
 * [AdMob](docs/ADMOB.md)
@@ -52,7 +59,13 @@ If you rather watch a (slightly outdated) video explaining the steps then check 
 add iOS and Android support to the Firebase console and how to integrate anonymous authentication:
 [![YouTube demo](docs/images/yt-thumb-setup.png)](https://youtu.be/IextEpoIzwE "YouTube demo")
 
-From the command prompt go to your app's root folder and execute:
+From the command prompt go to your app's root folder and execute this for NativeScript 7+:
+
+```bash
+tns plugin add @nativescript/firebase
+```
+
+or for NativeScript 6:
 
 ```bash
 tns plugin add nativescript-plugin-firebase
@@ -74,6 +87,8 @@ This is to ensure your app may roundtrip source control and installation on CI w
 You can reconfigure the plugin by going to the `node_modules/nativescript-plugin-firebase` and running `npm run config`.
 
 You can also change the configuration by deleting the `firebase.nativescript.json` and reinstalling the plugin.
+
+> Be advised. Enabling some features (such as [Admob](docs/ADMOB.md)) in the `firebase.nativescript.json` may require additional configuration. If you are experiencing crashes or bugs after installing this plugin please consult the [documentation](docs) for each of the features you've enabled to ensure that no additioal configuration is required.
 
 #### Using Vue?
 Please update your [NativeScript-Vue](https://github.com/nativescript-vue/vue-cli-template) template to 2.0 because it
@@ -108,6 +123,10 @@ We need to do some wiring when your app starts, so open `app.js` and add this be
 
 ##### JavaScript
 ```js
+// NativeScript 7+
+var firebase = require("@nativescript/firebase").firebase;
+
+// NativeScript 6-
 var firebase = require("nativescript-plugin-firebase");
 
 firebase.init({
@@ -125,6 +144,10 @@ firebase.init({
 
 #### TypeScript
 ```js
+// NativeScript 7+
+import { firebase } from "@nativescript/firebase";
+
+// NativeScript 6-
 const firebase = require("nativescript-plugin-firebase");
 
 firebase.init({
@@ -143,6 +166,10 @@ firebase.init({
 #### Angular
 Because of the specifics of the angular bootstrap it is best to initalize firebase once the angular application is running. For example your main compoment's `ngOnInit` method:
 ```js
+// NativeScript 7+
+import { firebase } from "@nativescript/firebase";
+
+// NativeScript 6-
 const firebase = require("nativescript-plugin-firebase");
 
 @Component({
@@ -306,7 +333,9 @@ Note: if you currently have the `storageBucket` property in the `firebase.init()
 ### Build
 The build hooks of this plugin will now choose either the `dev` or the `prod` version of your google services `plist` and `json` files depending on how you run your build:
 
-* `prod` will be selected if you run with either the `--release`, `--env.prod` or `--env.production` flags
-* `dev` will be selected if you do not run with any of the above flags
+* `dev` will be selected if you run with either `--env.dev`, `--env.development` or `--env.staging` flags.
+* `prod` will be selected if you run with either `--env.prod` or `--env.production`.
+
+Note: Using the `--release` flag without any of the above flags will set the default environment to production. If you need to create a release with dev environment you'll need to set it explicitly.
 
 Note: if you do not have both `dev` and `prod` files in place, the regular `GoogleService-Info.plist` and `google-services.json` files will be used.
