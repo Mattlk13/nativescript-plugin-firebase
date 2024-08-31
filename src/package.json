@@ -135,7 +135,7 @@
     "@nativescript/shared-notification-delegate": "~1.0.0",
     "prompt-lite": "~0.1.1",
     "xcode": "~0.9.3",
-    "semver": "~7.3.2"
+    "semver": "~7.6.3"
   },
   "devDependencies": {
     "rimraf": "~3.0.2",
